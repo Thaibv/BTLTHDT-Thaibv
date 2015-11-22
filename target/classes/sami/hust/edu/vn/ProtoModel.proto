@@ -1,0 +1,112 @@
+package sami.hust.edu.vn;
+
+option java_package = "sami.hust.edu.vn";
+option java_outer_classname = "ProtoModels";
+message MyKey {
+	required string key = 1;
+}
+
+message ListKey {
+	repeated string key = 1;
+}
+
+message DIEM_SV {
+	required string SBD = 1; //acess to key
+	required string HoTen = 2;
+	required string NgaySinh = 3;
+	required KhuVuc KV = 4;
+	required DoiTuongUuTien DTUT = 5;
+	required UuTien UT = 6;
+	required DiemThi Diem = 7;
+	//Khu vuc tuyen sinh
+	enum KhuVuc {
+		KV1 = 1;
+		KV2_NT = 2;
+		KV2 = 3;
+		KV3 = 4;
+	}
+
+	//Doi tuong uu tien
+	enum DoiTuongUuTien {
+		NDT1 = 1;
+		NDT2 = 2;
+		KHONG = 3;
+	}
+	//Uu tien xet tuyen - co giai quoc gia hay quoc te
+	enum UuTien {
+		CO_UT = 1;
+		KHONG_UT = 2;
+	}
+
+	message DiemThi {
+		optional double Toan = 1;
+		optional double Van = 2;
+		optional double Ly = 3;
+		optional double Hoa = 4;
+		optional double Sinh = 5;
+		optional double Su = 6;
+		optional double Dia = 7;
+		optional double Anh = 8;
+		optional double Nga = 9;
+		optional double Phap = 10;
+		optional double Trung = 11;
+		optional double Duc = 12;
+		optional double Nhat = 13;
+	}
+
+}
+
+message NguyenVongSV {
+	required string SBD = 1;
+	required NguyenVong NV1 = 2;
+	optional NguyenVong NV2 = 3;
+	optional NguyenVong NV3 = 4;
+	optional NguyenVong NV4 = 5;
+	message NguyenVong {
+		required string MaNganh = 1;
+		required TrangThai TT = 2;
+		required ToHopXet ToHopMon = 3;
+		optional double DiemXet = 4;
+		enum TrangThai {
+			TRUOT = -1;
+			CHUA_XET = 0;
+			TRUNG_TUYEN = 1;
+		}
+
+	}
+
+	enum ToHopXet {
+		TOAN_LY_HOA_1 = 1;
+		TOAN_LY_ANH_1 = 2;
+		TOAN_HOA_SINH_1 = 3;
+		TOAN_HOA_ANH_1 = 4;
+		TOAN_HOA_ANH_0 = 11;
+		TOAN_LY_HOA_0 = 5;
+		TOAN_LY_ANH_0 = 6;
+		TOAN_VAN_ANH_0 = 7;
+		TOAN_VAN_ANH_3 = 8;
+		TOAN_LY_PHAP_0 = 9;
+		TOAN_VAN_PHAP_0 = 10;
+	}
+
+}
+
+message ChiTieuKhoa {
+	required string MaKhoa = 1;
+	required int32 ChiTieu = 2;
+	required int32 SLHienTai = 6;
+	required double DiemChuan = 3;
+	required double MucDo = 4;
+	repeated DiemXet DSDiemXet = 5;
+	message DiemXet {
+		required double diem = 1;
+		repeated NVXet DSNVXet = 2;
+		message NVXet {
+			required string sbd = 1;
+			required double diem = 2;
+			required int32 nv = 3;
+		}
+
+	}
+
+}
